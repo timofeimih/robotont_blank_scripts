@@ -22,8 +22,26 @@ def closing():
 #######################
 # YOUR FUNCTIONS HERE #
 #######################
+def soitaOtse(speed):
+	vel_msg.linear.x = speed
+        vel_msg.linear.y = 0
+        vel_msg.angular.z = 0
+        velocity_publisher.publish(vel_msg)
+        rospy.sleep(0.1)
 
+def poorama(speed):
+	vel_msg.linear.x = 0
+        vel_msg.linear.y = 0
+        vel_msg.angular.z = speed
+        velocity_publisher.publish(vel_msg)
+        rospy.sleep(0.1)
 
+def side(speed):
+	vel_msg.linear.x = 0
+        vel_msg.linear.y = speed
+        vel_msg.angular.z = 0
+        velocity_publisher.publish(vel_msg)
+        rospy.sleep(0.1)
 ###########################
 # YOUR FUNCTIONS HERE END #
 ###########################
@@ -44,11 +62,9 @@ def move():
         ########################
         # YOUR CODE HERE START #
         ########################
-        vel_msg.linear.x = 0
-        vel_msg.linear.y = 0
-        vel_msg.angular.z = 0
-        velocity_publisher.publish(vel_msg)
-        rospy.sleep(0.1)
+        soitaOtse(0.2)
+	poorama(0.2)
+	side(0.2)
         ######################
         # YOUR CODE HERE END #
         ######################
