@@ -42,12 +42,38 @@ def move():
     vel_msg.angular.x = 0
     vel_msg.angular.y = 0
     vel_msg.angular.z = 0
-
+	
     while not rospy.is_shutdown():
         ########################
         # YOUR CODE HERE START #
         ########################
+	
+	if(distances.leftMin < 0.3 or distances.rightMin < 0.3):
+		vel_msg.linear.x = 0
+		vel_msg.linear.y = 0
+		if(distances.leftMin < distances.rightMin):
+			vel_msg.angular.z = -0.1
+		else: 
+			vel_msg.angular.z = 0.1
+		velocity_publisher.publish(vel_msg)
+		time.sleep(0.1)
+	elif(distances.centerMin > 0.4):
+		vel_msg.linear.x = 0.2
+		vel_msg.linear.y = 0
+		vel_msg.angular.z = 0
+		velocity_publisher.publish(vel_msg)
+		time.sleep(0.1)
+	else:
+		vel_msg.linear.x = 0
+		vel_msg.linear.y = 0
+		if(distances.leftMin < distances.rightMin):
+			vel_msg.angular.z = -0.4
+		else: 
+			vel_msg.angular.z = 0.4
+		velocity_publisher.publish(vel_msg)
+		time.sleep(0.1)
 
+	
         ######################
         # YOUR CODE HERE END #
         ######################
