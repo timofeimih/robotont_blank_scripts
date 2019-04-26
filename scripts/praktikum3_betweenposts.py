@@ -57,7 +57,6 @@ def move():
 			vel_msg.angular.z = 0.1
 		velocity_publisher.publish(vel_msg)
 		time.sleep(0.1)
-
 	elif(distances.centerMin > 0.4):
 		vel_msg.linear.x = 0.2
 		vel_msg.linear.y = 0
